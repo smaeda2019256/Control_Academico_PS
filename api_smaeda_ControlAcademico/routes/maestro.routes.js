@@ -9,6 +9,7 @@ const {
     getMaestroById,
     maestrosPost
 } = require('../controllers/maestro.controller');
+const { alumnosDelete } = require('../controllers/alumno.controller');
 
 const router = Router();
 
@@ -39,5 +40,15 @@ router.put(
         validarCampos
     ], putMaestros
 );
+
+router.delete(
+    "/:id",
+    [
+        check('id', 'No es un ID válido').isMongoId(),
+        validarCampos
+    ], alumnosDelete
+);
+
+module.exports = router;
 
 
