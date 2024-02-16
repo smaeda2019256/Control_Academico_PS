@@ -19,6 +19,35 @@ const alumnosGet = async (req, res = response) => {
     });
 }
 
+const getAlumnoByid = async (req, res) => {
+    const { id } = req.params;
+    const alumno = await Alumno.findOne({_id: id});
+
+    res.status(200).json({
+        alumno
+    });
+}
+
+const putAlumnos = async (req, res = response) => {
+    const { id } = req.params;
+    const { _id, password, correo, ...resto } = req.body;
+
+    if (password) {
+        const salt = bcryptsjs.genSaltSync();
+        resto.password = bcryptsjs.hashSync(password, salt);
+    }
+
+    const alumno = await Alumno.findByIdAndUpdate(id, resto);
+
+    res.status(200).json({
+        msg: 'El Alumno Fue Actualizado Exitosamente!',
+        alumno,
+    });
+}
+
 module.exports = {
-    alumnosGet
+    alumnosGet,
+    getAlumnoByid,
+    putAlumnos
+
 }
