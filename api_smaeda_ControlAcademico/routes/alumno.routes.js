@@ -24,3 +24,17 @@ router.get(
         validarCampos
     ], getAlumnoByid
 );
+
+router.post(
+    "/",
+    [
+        check("nombre", "El nombre no puede quedar vacio").not().isEmpty(),
+        check("password", "El password debe de ser mayor a 8 caracteres").isLength({ min: 8 }),
+        check("correo", "Este no es un correo válido").isEmail(),
+        check("grado", "El grado no puede quedar vacio").not().isEmpty(),
+        validarCampos,
+    ], alumnosPost
+
+);
+
+module.exports = router;
