@@ -19,7 +19,17 @@ const maestrosGet = async (req, res = response) =>{
     });
 }
 
+const getMaestroById = async (req, res) => {
+    const { id } = req.params;
+    const maestro = await Maestro.findOne({_id: id});
+
+    res.status(200).json({
+        maestro
+    });
+}
+
 
 module.exports = {
-    maestrosGet
+    maestrosGet,
+    getMaestroById
 }
