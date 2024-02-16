@@ -28,8 +28,22 @@ const getMaestroById = async (req, res) => {
     });
 }
 
+const maestrosPost = async (req, res) => {
+    const { nombre, correo, password } = req.body;
+    const maestro = new mestrosPost({ nombre, correo, password });
+
+    const salt = bcryptjs.genSaltSync();
+    maestro.password = bcryptjs.hashSync(password, salt);
+
+    await maestro.save();
+    res.status(200).json({
+        maestro
+    });
+}
+
 
 module.exports = {
     maestrosGet,
-    getMaestroById
+    getMaestroById,
+    maestrosPost
 }
