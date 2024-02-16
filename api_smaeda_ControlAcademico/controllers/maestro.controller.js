@@ -1,4 +1,4 @@
-const bcryptjs = require('bcryptjs');
+const bcryptsjs = require('bcryptjs');
 const Maestro = require('../models/maestro');
 const { response, request } = require('express');
 
@@ -30,13 +30,30 @@ const getMaestroById = async (req, res) => {
 
 const maestrosPost = async (req, res) => {
     const { nombre, correo, password } = req.body;
-    const maestro = new mestrosPost({ nombre, correo, password });
+    const maestro = new Maestro({ nombre, correo, password });
 
-    const salt = bcryptjs.genSaltSync();
-    maestro.password = bcryptjs.hashSync(password, salt);
+    const salt = bcryptsjs.genSaltSync();
+    maestro.password = bcryptsjs.hashSync(password, salt);
 
     await maestro.save();
     res.status(200).json({
+        maestro
+    });
+}
+
+const putMaestros = async (req, res = response) => {
+    const {id} = req.params;
+    const {_id, password, curso, correo, ...resto} = req.body;
+
+    if (password) {
+        const salt = bcryptsjs.genSaltSync();
+        resto.password = bcryptsjs.hashSync(password, salt);
+    }
+
+    const maestro = await Maestro.findByIdAndUpdate(id, resto);
+
+    res.status(200).json({
+        msg: 'El Maestro a sido Actualizado Exitosamente',
         maestro
     });
 }
@@ -45,5 +62,6 @@ const maestrosPost = async (req, res) => {
 module.exports = {
     maestrosGet,
     getMaestroById,
-    maestrosPost
+    maestrosPost,
+    putMaestros
 }
