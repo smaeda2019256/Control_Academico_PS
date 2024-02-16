@@ -45,9 +45,36 @@ const putAlumnos = async (req, res = response) => {
     });
 }
 
+const alumnosDelete = async (req, res) => {
+    const {id} = req.params;
+    const alumno = await Alumno.findByIdAndUpdate(id, {estado: false});
+    const alumnoAutenticado = req.alumno;
+
+    res.status(200).json({
+        msg: 'Alumno que se Eliminará',
+        alumno,
+        alumnoAutenticado
+    });
+}
+
+const alumnosPost = async (req, res) => {
+    const { nombre, correo, password, grado } = req.body;
+    const alumno = new Alumno ({ nombre, correo, password, grado});
+
+    const salt = bcryptsjs.getSaltSync();
+    alumno.password = bcryptsjs.hashSync(password, salt);
+
+    await alumno.save();
+    res.status(200).json({
+        alumno
+    });
+}
+
 module.exports = {
     alumnosGet,
     getAlumnoByid,
-    putAlumnos
+    putAlumnos,
+    alumnosDelete,
+    alumnosPost
 
 }
