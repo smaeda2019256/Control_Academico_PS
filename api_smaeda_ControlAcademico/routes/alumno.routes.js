@@ -37,4 +37,12 @@ router.post(
 
 );
 
+router.put(
+    "/:id",
+    [
+        check('id', 'No es un ID válido').isMongoId(),
+        validarCampos
+    ], putAlumnos
+);
+
 module.exports = router;
