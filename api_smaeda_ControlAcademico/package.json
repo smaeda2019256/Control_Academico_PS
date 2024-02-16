@@ -1,17 +1,18 @@
 {
   "name": "api_control_academico",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Control Académico",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "script": "node index.js"
   },
   "keywords": [],
   "author": "Santiago Maeda",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
