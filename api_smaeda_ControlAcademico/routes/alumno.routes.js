@@ -45,4 +45,12 @@ router.put(
     ], putAlumnos
 );
 
+router.delete(
+    "/:id",
+    [
+        check('id', 'No es un ID válido').isMongoId(),
+        validarCampos
+    ], alumnosDelete
+);
+
 module.exports = router;
