@@ -58,10 +58,24 @@ const putMaestros = async (req, res = response) => {
     });
 }
 
+const maestrosDelete = async (req, res) =>{
+    const {id} = req.params;
+    const maestro = new Maestro({nombre, correo, password});
+
+    const salt = bcryptsjs.genSaltSync();
+    maestro.password = bcryptsjs.hashSync(password, salt);
+
+    await maestro.save();
+    res.status(200).json({
+        maestro
+    });
+}
+
 
 module.exports = {
     maestrosGet,
     getMaestroById,
     maestrosPost,
-    putMaestros
+    putMaestros,
+    maestrosDelete
 }
