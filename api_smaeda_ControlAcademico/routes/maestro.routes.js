@@ -24,7 +24,7 @@ router.get(
     ], getMaestroById
 );
 
-route.post(
+router.post(
     "/",
     [
         check("nombre", "El nombre no puede quedar vacio").not().isEmpty(),

@@ -27,7 +27,7 @@ class Server {
     routes() {
         this.app.use(this.alumnoPath, require('../routes/alumno.routes'));
         this.app.use(this.maestroPath, require('../routes/maestro.routes'));
-        this.app.use(this.loginPath, require('../routes/auth.routes'));
+        //this.app.use(this.loginPath, require('../routes/auth.routes'));
     }
 
     listen() {
