@@ -12,6 +12,9 @@ const {
 
 } = require('../controllers/alumno.controller');
 
+const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validators.js');
+const { validarJWT } = require('../middlewares/validar-jwt.js');
+
 const router = Router();
 
 router.get("/", alumnosGet);
@@ -20,7 +23,7 @@ router.get(
     "/:id",
     [
         check('id', 'No es un ID válido').isMongoId(),
-        //check('id').custom(existenteId),
+        check('id').custom(existenteId),
         validarCampos
     ], getAlumnoByid
 );
@@ -41,6 +44,8 @@ router.put(
     "/:id",
     [
         check('id', 'No es un ID válido').isMongoId(),
+        check('id').custom(existenteId),
+        check('role').custom(esRoleValido),
         validarCampos
     ], putAlumnos
 );
