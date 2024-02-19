@@ -10,7 +10,7 @@ const {
     getAlumnoByid,
     alumnosDelete
 
-} = require('../controllers/alumno.controller');
+} = require('../controllers/alumno.controller.js');
 
 const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validator.js');
 const { validarJWT } = require('../middlewares/validar-jwt.js');
@@ -55,7 +55,7 @@ router.put(
 router.delete(
     "/:id",
     [
-        validarJWT,
+        
         check('id', 'No es un ID válido').isMongoId(),
         check('id').custom(existenteId),
         validarCampos

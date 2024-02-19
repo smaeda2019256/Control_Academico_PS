@@ -17,7 +17,7 @@ const maestrosGet = async (req, res = response) =>{
         total,
         maestros
     });
-}
+} 
 
 const getMaestroById = async (req, res) => {
     const { id } = req.params;
@@ -60,14 +60,14 @@ const putMaestros = async (req, res = response) => {
 
 const maestrosDelete = async (req, res) =>{
     const {id} = req.params;
-    const maestro = new Maestro({nombre, correo, password});
+    const maestro = await Maestro.findByIdAndUpdate(id,{estado: false});
+    const maestroAutenticado = req.alumno;
 
-    const salt = bcryptsjs.genSaltSync();
-    maestro.password = bcryptsjs.hashSync(password, salt);
 
-    await maestro.save();
     res.status(200).json({
-        maestro
+        msg: 'Maestro que se Eliminará',
+        maestro,
+        maestroAutenticado
     });
 }
 

@@ -15,14 +15,14 @@ const login = async (req = request, res = response) => {
 
             if (!user) {
                 return res.status(400).json({
-                    msg: "Credenciales incorrectas, el correo no existe en la DB!"
+                    msg: "Credenciales incorrectas, el correo no existe en la Base de Datos!"
                 });
             }
         }
 
         if (!user.estado) {
             return res.status(400).json({
-                msg: "El usuario no existe en la DB"
+                msg: "El usuario no existe en la Base de Datos"
             });
         }
 
@@ -36,7 +36,7 @@ const login = async (req = request, res = response) => {
         const token = await generarJWT(user.id);
 
         res.status(200).json({
-            msg: "Bienvenido",
+            msg: "Bienvenido (LOGIN)",
             user,
             token
         });

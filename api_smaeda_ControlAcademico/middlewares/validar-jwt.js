@@ -8,7 +8,7 @@ const validarJWT = async(req = request, res = response, next) => {
 
     if (!token) {
         return res.status(401).json({
-            smg: 'No hay TOKEN en la petición',
+            msg: 'No hay TOKEN en la petición',
         });
     }
     try{
@@ -16,7 +16,7 @@ const validarJWT = async(req = request, res = response, next) => {
         const alumno = await Alumno.findById(uid);
         if(!alumno){
             return res.status(401).json({
-                smg: 'El Alumno no existe en la Base de Datos'
+                msg: 'El Alumno no existe en la Base de Datos'
             });
         }
 
