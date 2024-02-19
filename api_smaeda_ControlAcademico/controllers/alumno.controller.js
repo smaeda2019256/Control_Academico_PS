@@ -51,7 +51,7 @@ const alumnosDelete = async (req, res) => {
     const alumnoAutenticado = req.alumno;
 
     res.status(200).json({
-        msg: 'Alumno que se Eliminará',
+        msg: 'Alumno que se Eliminara',
         alumno,
         alumnoAutenticado
     });
