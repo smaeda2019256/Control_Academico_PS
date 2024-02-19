@@ -10,7 +10,10 @@ const {
     maestrosPost,
     maestrosDelete
 } = require('../controllers/maestro.controller');
-const { alumnosDelete } = require('../controllers/alumno.controller');
+
+const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validator.js');
+const { validarJWT } = require('../middlewares/validar-jwt.js');
+
 
 const router = Router();
 
@@ -20,6 +23,7 @@ router.get(
     '/:id',
     [
         check('id', 'No es un ID válido').isMongoId(),
+        check('id').custom(existenteId),
         validarCampos
     ], getMaestroById
 );
@@ -30,6 +34,8 @@ router.post(
         check("nombre", "El nombre no puede quedar vacio").not().isEmpty(),
         check("password", "El password debe de ser mayor a 8 caracteres").isLength({ min: 8}),
         check("correo", "El grado no puede quedar vacio").isEmail(),
+        check("correo").custom(existenteEmail),
+        check("role").custom(esRoleValido),
         validarCampos
     ], maestrosPost
 );
@@ -38,6 +44,8 @@ router.put(
     "/:id",
     [
         check('id', 'No es un ID válido').isMongoId(),
+        check('id').custom(existenteId),
+        check('role').custom(esRoleValido),
         validarCampos
     ], putMaestros
 );
@@ -45,7 +53,9 @@ router.put(
 router.delete(
     "/:id",
     [
+        validarJWT,
         check('id', 'No es un ID válido').isMongoId(),
+        check('id').custom(existenteId),
         validarCampos
     ], maestrosDelete
 );

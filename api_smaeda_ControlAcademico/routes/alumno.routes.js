@@ -12,7 +12,7 @@ const {
 
 } = require('../controllers/alumno.controller');
 
-const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validators.js');
+const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validator.js');
 const { validarJWT } = require('../middlewares/validar-jwt.js');
 
 const router = Router();
@@ -35,6 +35,8 @@ router.post(
         check("password", "El password debe de ser mayor a 8 caracteres").isLength({ min: 8 }),
         check("correo", "Este no es un correo válido").isEmail(),
         check("grado", "El grado no puede quedar vacio").not().isEmpty(),
+        check("correo").custom(existenteEmail),
+        check("role").custom(esRoleValido),
         validarCampos,
     ], alumnosPost
 
@@ -53,7 +55,9 @@ router.put(
 router.delete(
     "/:id",
     [
+        validarJWT,
         check('id', 'No es un ID válido').isMongoId(),
+        check('id').custom(existenteId),
         validarCampos
     ], alumnosDelete
 );
