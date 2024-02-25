@@ -13,7 +13,7 @@ const existenteEmailAlumno = async (correo = '') => {
 const existeAlumnoById = async (id = '') => {
     const existeAlumno = await Alumno.findOne({id});
     if(!existeAlumno) {
-        throw new Error(`El USUARIO con el ${id} no EXISTE`);
+        throw new Error(`El Alumno con el ${id} no EXISTE`);
     }
 }
 

@@ -1,22 +1,21 @@
-const { request, response } = require('express');
+const { request, response } = require("express")
 
-const StudentRole = (req = request, resp = response, next) => {
-    if(!req.alumno){
-        return resp.status(500).json({
-            msg: 'Quiere verificar un rol sin validar el TOKEN primero'
-        });
+const tieneRole = (...roles) => {
+    return (req= request, res = response, next ) => {
+        if(!req.user){
+            return res.status(500).json({
+                msg: 'Se quiere certificar un ROLE sin antes validar el Token'
+            })
+        }
+
+        if(!roles.includes(req.user)){
+            return res.status(400).json({
+                msg: `Se necesita un ROLE como los de ${roles}`
+            })
+        }
     }
-
-    const { role, nombre } = req.alumno;
-
-    if( role !== "STUDEN_ROLE"){
-        return resp.status(400).json({
-            msg: `${nombre} no es un ADMINISTRADOR, no puede estar aquí`
-        });
-    }
-    next();
 }
 
 module.exports = {
-    StudentRole
+    tieneRole
 }
