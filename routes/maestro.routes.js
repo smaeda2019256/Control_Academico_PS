@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-
+const { validarJWT } = require('../middlewares/validar-jwt.js');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { existeEmailMaestro, existeMaestroById } = require('../helpers/db-validator.js');
 
 const {
     maestrosGet, 
@@ -11,10 +12,6 @@ const {
     maestrosDelete
 } = require('../controllers/maestro.controller');
 
-const { existenteEmail, esRoleValido, existenteId } = require('../helpers/db-validator.js');
-const { validarJWT } = require('../middlewares/validar-jwt.js');
-
-
 const router = Router();
 
 router.get('/', maestrosGet);
@@ -23,7 +20,7 @@ router.get(
     '/:id',
     [
         check('id', 'No es un ID válido').isMongoId(),
-        check('id').custom(existenteId),
+        check('id').custom(existeMaestroById),
         validarCampos
     ], getMaestroById
 );
@@ -33,9 +30,9 @@ router.post(
     [
         check("nombre", "El nombre no puede quedar vacio").not().isEmpty(),
         check("password", "El password debe de ser mayor a 8 caracteres").isLength({ min: 8}),
-        check("correo", "El grado no puede quedar vacio").isEmail(),
-        check("correo").custom(existenteEmail),
-        check("role").custom(esRoleValido),
+        check("correo", "El correo no es válido").isEmail(),
+        check("correo").custom(existeEmailMaestro),
+        check("role", "El ROLE solo puede ser ACTUALIZADO no puede ser Ingresado"),
         validarCampos
     ], maestrosPost
 );
@@ -44,8 +41,8 @@ router.put(
     "/:id",
     [
         check('id', 'No es un ID válido').isMongoId(),
-        check('id').custom(existenteId),
-        check('role').custom(esRoleValido),
+        check('id').custom(existeMaestroById),
+        check('role', "El ROLE no EXISTE en la DB"),
         validarCampos
     ], putMaestros
 );
@@ -53,9 +50,9 @@ router.put(
 router.delete(
     "/:id",
     [
-        
+        validarJWT,
         check('id', 'No es un ID válido').isMongoId(),
-        check('id').custom(existenteId),
+        check('id').custom(existeMaestroById),
         validarCampos
     ], maestrosDelete
 );
