@@ -45,7 +45,7 @@ const agregarCursoAlumno = async  (req,res=response)=>{
             msg: 'El Curso se AGREGÓ Correctamente al Alumno',
             alumno
         });
-        
+
     }catch (error) {
         res.status(500).json({
             msg: 'Ocurrió un ERROR al AGREGAR el Curso al Alumno',
@@ -68,6 +68,7 @@ const getCursoAlumnoByToken = async (req, res) => {
         res.status(200).json({
             cursos: cursosWithNombre
         });
+        
     } catch (error) {
         res.status(500).json({
             msg: 'Ocurrió un ERROR para obtener los Cursos del Alumno',
