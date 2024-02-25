@@ -1,53 +1,59 @@
-const { request } = require('express');
-const Alumno = require('../models/alumno');
+const { generarJWT } = require("../helpers/generar-jwt");
+const Alumno = require('../models/alumnos');
 const Maestro = require('../models/maestro');
 const bcryptjs = require('bcryptjs');
-const { generarJWT } = require('../helpers/generar-jwt');
 
-const login = async (req = request, res = response) => {
+const login = async (req, res) => {
     const { correo, password } = req.body;
+    const alumno = await Alumno.findOne({ correo });
+    const maestro = await Maestro.findOne({ correo });
+    let user, userType;
 
-    try{
-        let user = await Alumno.findOne({ correo });
+
+    if (alumno) {
+        user = alumno;
+        userType = 'Alumno'
+    } else {
+        user = maestro;
+        userType = 'Maestro';
+    }
+    
+    try {
 
         if (!user) {
-            user = await Maestro.findOne({ correo });
-
-            if (!user) {
-                return res.status(400).json({
-                    msg: "Credenciales incorrectas, el correo no existe en la Base de Datos!"
-                });
-            }
+            return res.status(400).json({
+                msg: 'El Correo No Está REGISTRADO'
+            })
         }
-
         if (!user.estado) {
             return res.status(400).json({
-                msg: "El usuario no existe en la Base de Datos"
-            });
+                msg: 'El Usuario no EXISTE en la DB'
+            })
         }
-
-        const validarPassword = bcryptjs.compareSync(password, user.password);
-        if (!validarPassword) {
+        const validPassword = bcryptjs.compareSync(password, user.password);
+        if (!validPassword) {
             return res.status(400).json({
-                msg: "La contraseña es incorrecta"
-            });
+                msg: 'La Contraseña es INCORRECTA'
+            })
         }
 
         const token = await generarJWT(user.id);
 
         res.status(200).json({
-            msg: "Bienvenido (LOGIN)",
+            msg: 'TOTAL ACCESO :)',
             user,
             token
-        });
+        })
 
-    } catch(e) {
-        console.log(e);
+
+    } catch (error) {
+        console.log(error);
         res.status(500).json({
-            msg: "Comuniquese con el Administrador"
-        });
-    };
-};
+            msg: 'Porfavor, comuniquese con el ADMIN'
+        })
+    }
+
+}
 
 module.exports = {
     login
