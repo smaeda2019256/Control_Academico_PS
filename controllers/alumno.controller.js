@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const Alumno = require('../models/alumno');
 const { response , json } = require('express');
+const Curso = require('../models/curso');
+const { existenteEmailAlumno } = require('../helpers/db-validator');
 
 const putAlumnos = async (req, res = response) => {
     const { id } = req.params;
@@ -68,7 +70,7 @@ const getCursoAlumnoByToken = async (req, res) => {
         res.status(200).json({
             cursos: cursosWithNombre
         });
-        
+
     } catch (error) {
         res.status(500).json({
             msg: 'Ocurrió un ERROR para obtener los Cursos del Alumno',
@@ -80,6 +82,7 @@ const getCursoAlumnoByToken = async (req, res) => {
 const alumnosPost = async (req, res) => {
     try{
         const {nombre, correo, password } = req.body;
+        await existenteEmailAlumno(correo);
         const hashedPassword = await  bcrypt.hash(password, 10);
         const alumno = new Alumno ({nombre, correo, password: hashedPassword});
         await alumno.save();
