@@ -54,6 +54,28 @@ const agregarCursoAlumno = async  (req,res=response)=>{
     }
 }
 
+const getCursoAlumnoByToken = async (req, res) => {
+    try {
+        const alumno = req.alumno;
+        const cursos = await Curso.find({_id: {$in: alumno.cursos }});
+        const cursosWithNombre = cursos.map(curso => ({
+            _id: curso._id,
+            nombre: curso.nombre,
+            descripcion: curso.descripcion,
+            profesor: curso.profesor
+        }));
+
+        res.status(200).json({
+            cursos: cursosWithNombre
+        });
+    } catch (error) {
+        res.status(500).json({
+            msg: 'Ocurrió un ERROR para obtener los Cursos del Alumno',
+            error: error.message
+        });
+    }
+}
+
 const alumnosPost = async (req, res) => {
     try{
         const {nombre, correo, password } = req.body;
@@ -76,6 +98,7 @@ module.exports = {
     putAlumnos,
     alumnosDelete,
     agregarCursoAlumno,
+    getCursoAlumnoByToken,
     alumnosPost
 
 }
