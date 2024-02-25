@@ -1,6 +1,6 @@
-const bcryptsjs = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const Alumno = require('../models/alumno');
-const { response , request } = require('express');
+const { response , json } = require('express');
 
 const alumnosGet = async (req, res = response) => {
     const { limite, desde } = req.query;
@@ -58,16 +58,21 @@ const alumnosDelete = async (req, res) => {
 }
 
 const alumnosPost = async (req, res) => {
-    const { nombre, correo, password, grado } = req.body;
-    const alumno = new Alumno({ nombre , correo, password, grado });
-
-    const salt = bcryptsjs.genSaltSync();
-    alumno.password = bcryptsjs.hashSync(password, salt);
-
-    await alumno.save();
-    res.status(200).json({
-        alumno
-    });
+    try{
+        const {nombre, correo, password } = req.body;
+        const hashedPassword = await  bcrypt.hash(password, 10);
+        const alumno = new Alumno ({nombre, correo, password: hashedPassword});
+        await alumno.save();
+        
+        res.status(200).json({
+            msg: 'El Alumno fue AGREGADO Correctamente',
+            alumno
+        });
+        }catch(error){
+            res.status(409).json({
+                error: error.message
+            });
+    }
 }
 
 module.exports = {
