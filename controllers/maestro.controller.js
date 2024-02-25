@@ -30,16 +30,23 @@ const getMaestroById = async (req, res) => {
 }
 
 const maestrosPost = async (req, res) => {
-    const { nombre, correo, password } = req.body;
-    const maestro = new Maestro({ nombre, correo, password });
+    try{
+        const { nombre, correo, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const maestro = new Maestro({nombre, correo, password: hashedPassword});
 
-    const salt = bcryptsjs.genSaltSync();
-    maestro.password = bcryptsjs.hashSync(password, salt);
+        await maestro.save();
+        res.status(200).json({
+            msg: "El Maestro se AGREGÓ Correctamente",
+            maestro
+        });
 
-    await maestro.save();
-    res.status(200).json({
-        maestro
-    });
+    }catch (e){
+        res.status(409).json({
+            error: error.message
+        });
+    }
+    
 }
 
 const putMaestros = async (req, res = response) => {
