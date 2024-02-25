@@ -45,6 +45,7 @@ const agregarCursoAlumno = async  (req,res=response)=>{
             msg: 'El Curso se AGREGÓ Correctamente al Alumno',
             alumno
         });
+        
     }catch (error) {
         res.status(500).json({
             msg: 'Ocurrió un ERROR al AGREGAR el Curso al Alumno',
