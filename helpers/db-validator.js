@@ -31,9 +31,22 @@ const existeMaestroById = async (id='') => {
     }
 }
 
+const existeCursos = async (nombre = '') => {
+    const cursoNormalizado = nombre.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase());
+    const existeNombre =  await Cursor.findOne({nombre: cursoNormalizado});
+
+    if(existeNombre){
+        throw new Error(`El Curso ${nombre} ya fue REGISTRADO`);
+
+    }
+}
+
+
+
 module.exports = {
     existenteEmailAlumno,
     existeAlumnoById,
     existeEmailMaestro,
-    existeMaestroById
+    existeMaestroById,
+    existeCursos
 }
