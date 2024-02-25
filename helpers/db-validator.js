@@ -6,7 +6,7 @@ const Maestro = require('../models/maestro');
 const existenteEmailAlumno = async (correo = '') => {
     const existeEmail = await Alumno.findOne({correo});
     if(existeEmail){
-        throw new Error(`El EMAIL ${correo} ya fue registrado`)
+        throw new Error(`El EMAIL ${correo} ya fue registrado`);
     }
 }
 
@@ -17,7 +17,23 @@ const existeAlumnoById = async (id = '') => {
     }
 }
 
+const existeEmailMaestro = async (correo='') => {
+    const existeEmail = await Maestro.findOne({correo});
+    if(existeEmail){
+        throw new Error (`El EMAIL ${correo} ya fue registrado`);
+    }
+}
+
+const existeMaestroById = async (id='') => {
+    const existeMaestro = await Maestro.findOne({id});
+    if(!existeMaestro){
+        throw new Error(`El Maestro con el ${id} no EXISTE`);
+    }
+}
+
 module.exports = {
     existenteEmailAlumno,
-    existeAlumnoById
+    existeAlumnoById,
+    existeEmailMaestro,
+    existeMaestroById
 }

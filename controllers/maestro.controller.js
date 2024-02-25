@@ -24,7 +24,7 @@ const getMaestroById = async (req, res) => {
     const maestro = await Maestro.findOne({_id: id});
 
     res.status(200).json({
-        msg: "El Maestro fue Encotrado",
+        msg: "El Maestro fue Encontrado",
         maestro
     });
 }
@@ -63,16 +63,23 @@ const putMaestros = async (req, res = response) => {
 }
 
 const maestrosDelete = async (req, res) =>{
-    const {id} = req.params;
-    const maestro = await Maestro.findByIdAndUpdate(id,{estado: false});
-    const maestroAutenticado = req.alumno;
+    try{
+        const {id} = req.params;
+        const maestro = await Maestro.findByIdAndUpdate(id,{estado: false});
+        const maestroAutenticado = req.alumno;
 
+        res.status(200).json({
+            msg: "Él Maestro que se ELIMINARÁ",
+            maestro,
+            maestroAutenticado
+        });
 
-    res.status(200).json({
-        msg: 'Maestro que se Eliminará',
-        maestro,
-        maestroAutenticado
-    });
+    }catch(e){
+        res.status(500).json({
+            msg: "Él Maestro no se pudo ELIMINAR"
+        });
+    }
+    
 }
 
 
