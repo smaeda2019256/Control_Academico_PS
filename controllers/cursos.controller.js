@@ -19,8 +19,28 @@ const cursosGet = async (req, res = response) =>{
         total,
         cursos
     });
-}
+};
+
+const cursosPost = async (req, res) => {
+    try {
+        const {nombre, descripcion, acceso} = req.body;
+        const maestro = req.maestro._id;
+        const curso = new Curso({nombre, descripcion, acceso, maestro});
+        await curso.save();
+
+        res.status(200).json({
+            msg: "El Curso se AGREGÓ Correctamente",
+            curso
+        });
+
+    }catch(e){
+        res.status(409).json({
+            error: error.message
+        });
+    }
+};
 
 module.exports = {
-    cursosGet
+    cursosGet,
+    cursosPost
 }
