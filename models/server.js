@@ -29,7 +29,7 @@ class Server {
         this.app.use(this.alumnoPath, require('../routes/alumno.routes'));
         this.app.use(this.maestroPath, require('../routes/maestro.routes'));
         this.app.use(this.loginPath, require('../routes/auth.routes'));
-        this.app.use(this.cursosPath, require('../routes/'));
+        this.app.use(this.cursosPath, require('../routes/curso.routes'));
     }
 
     listen() {
