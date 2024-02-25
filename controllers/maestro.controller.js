@@ -1,4 +1,4 @@
-const bcryptsjs = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const Maestro = require('../models/maestro');
 const { response, request } = require('express');
 
@@ -24,6 +24,7 @@ const getMaestroById = async (req, res) => {
     const maestro = await Maestro.findOne({_id: id});
 
     res.status(200).json({
+        msg: "El Maestro fue Encotrado",
         maestro
     });
 }
