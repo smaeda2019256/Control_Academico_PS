@@ -40,6 +40,39 @@ const cursosPost = async (req, res) => {
     }
 };
 
+const cursosPut =  async (req, res) => {
+    try{
+        const  { id }= req.params;
+        const  {maestro: maestroAutenticado} = req;
+        const {_id, acceso, maestro, ...resto} = req.body;
+        const curso = await Curso.findById(id);
+
+        if (!curso || String(curso.maestro) !== String(maestroAutenticado._id)) {
+            return res.status(403).json({
+                msg: 'ACCESO DENEGADO - Solo el Maestro del Curso puede Actualizarlo'
+            });
+        }
+
+        const cursoActualizado = await Curso.findByIdAndUpdate(id, resto, {new: true});
+
+        await Alumno.updateMany(
+            {cursos: {$in: [cursoActualizado._id]}},
+            {$et: {"cursos.$": cursoActualizado._id}}
+        );
+
+        res.status(200).json({
+            msg: 'El Curso fue ACTUALIZADO Correctamente',
+            curso: cursoActualizado
+        });
+
+    }catch(e){
+        res.status(500).json({
+            msg: 'Hubo un ERROR al poder ACTUALIZAR el Curso',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     cursosGet,
     cursosPost
