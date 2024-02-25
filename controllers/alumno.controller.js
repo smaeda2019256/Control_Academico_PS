@@ -33,6 +33,26 @@ const alumnosDelete = async (req, res) => {
     }
 }
 
+const agregarCursoAlumno = async  (req,res=response)=>{
+    try{
+        const { curso } = req;
+        const alumno = req.alumno;
+
+        alumno.cursos.push(curso._id);
+        await alumno.save();
+
+        res.status(200).json({
+            msg: 'El Curso se AGREGÓ Correctamente al Alumno',
+            alumno
+        });
+    }catch (error) {
+        res.status(500).json({
+            msg: 'Ocurrió un ERROR al AGREGAR el Curso al Alumno',
+            error: error.message
+        });
+    }
+}
+
 const alumnosPost = async (req, res) => {
     try{
         const {nombre, correo, password } = req.body;
@@ -52,10 +72,9 @@ const alumnosPost = async (req, res) => {
 }
 
 module.exports = {
-    alumnosGet,
-    getAlumnoByid,
     putAlumnos,
     alumnosDelete,
+    agregarCursoAlumno,
     alumnosPost
 
 }
