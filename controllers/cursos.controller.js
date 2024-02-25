@@ -73,7 +73,40 @@ const cursosPut =  async (req, res) => {
     }
 };
 
+const cursosDelete = async (req, res) => {
+    try{
+        const  { id } = req.params;
+        const {maestro} = req;
+        const curso = await Curso.findById(id);
+
+        if (!curso || curso.maestro.toString() !== maestro._id.toString()) {
+            return res.status(403).json({
+                msg: 'ACCESO DENEGADO - Solo el Maestro del Curso puede Eliminarlo'
+            });
+        }
+
+        await Alumno.updateMany(
+            {cursos: curso._id},
+            {$pull: {cursos: curso._id}}
+        );
+
+        await Curso.findByIdAndUpdate(id, {estado: false});
+
+        res.status(200).json({
+            msg: 'El Curso fue ELIMINADO Correctamente'
+        });
+
+    }catch(e){
+        res.status(500).json({
+            msg: 'Hubo un ERROR al quere ELIMINAR el Curso',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     cursosGet,
-    cursosPost
+    cursosPost,
+    cursosPut,
+    cursosDelete
 }
