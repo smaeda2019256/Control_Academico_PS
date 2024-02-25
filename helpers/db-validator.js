@@ -71,6 +71,14 @@ const validarLimiteCursos = (cursos) => {
     }
 }
 
+const validarExistenciaDeCursos = async (cursos) => {
+    const cursosEncontrados = await Curso.find({nombre: {$in: cursos}});
+    if(cursos.length !== cursosEncontrados.length){
+        const cursosNoEncontrados = cursos.filter(curso => !cursosEncontrados.some(c => c.nombre === curso));
+        throw new Error('NO se puedieron ENCONTRAR los Cursos');
+    }
+}
+
 
 module.exports = {
     existenteEmailAlumno,
@@ -81,5 +89,6 @@ module.exports = {
     existeCursoById,
     existeCursoByCorreo,
     validarCursosRepetidos,
-    validarLimiteCursos
+    validarLimiteCursos,
+    validarExistenciaDeCursos
 }
