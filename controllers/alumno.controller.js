@@ -53,6 +53,8 @@ const agregarCursoAlumno = async  (req,res=response)=>{
     }
 }
 
+
+
 const alumnosPost = async (req, res) => {
     try{
         const {nombre, correo, password } = req.body;
