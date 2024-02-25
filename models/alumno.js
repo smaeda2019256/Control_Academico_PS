@@ -8,7 +8,6 @@ const AlumnoSchema = Schema ({
     correo:{
         type: String,
         required: [true, 'El correo es obligatorio'],
-        unique: true
     },
     password:{
         type: String,
@@ -16,20 +15,19 @@ const AlumnoSchema = Schema ({
     },
     role:{
         type: String,
+        enum: ["TEACHER_ROLE", "STUDENT_ROLE"],
         default: "STUDENT_ROLE"
-    },
-    grado:{
-        type: String,
-        require: [true, 'El grado es obligatorio']
-    },
-    cursos:{
-        type: [String],
-        default: []
     },
     estado:{
         type: Boolean,
         default: true
-    }
+    },
+    cursos: [
+        {
+           type: String,
+           required: [true, 'El curso es obligatorio']
+        }
+    ]
 });
 
 AlumnoSchema.methods.toJSON = function(){
