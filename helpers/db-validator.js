@@ -63,6 +63,14 @@ const validarCursosRepetidos = (cursos) => {
     }
 }
 
+const validarLimiteCursos = (cursos) => {
+    if(cursos.length > 3){
+        throw new Error('ERROR - Se esta pasando el número MÁXIMO de Cursos - (Son solo 3 Cursos Permitidos)');
+    }else if(cursos.length < 1){
+        throw new Error('Se debe colocar al menos 1 Curso')
+    }
+}
+
 
 module.exports = {
     existenteEmailAlumno,
@@ -72,5 +80,6 @@ module.exports = {
     existeCursos,
     existeCursoById,
     existeCursoByCorreo,
-    validarCursosRepetidos
+    validarCursosRepetidos,
+    validarLimiteCursos
 }
