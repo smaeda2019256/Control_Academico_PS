@@ -1,4 +1,4 @@
-const Role = require('../models/role');
+const Curso = require('../models/curso');
 const Alumno = require('../models/alumno');
 const Maestro = require('../models/maestro');
 

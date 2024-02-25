@@ -1,5 +1,5 @@
 const { generarJWT } = require("../helpers/generar-jwt");
-const Alumno = require('../models/alumnos');
+const Alumno = require('../models/alumno');
 const Maestro = require('../models/maestro');
 const bcryptjs = require('bcryptjs');
 
