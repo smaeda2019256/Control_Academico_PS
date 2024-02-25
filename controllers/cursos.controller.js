@@ -104,9 +104,28 @@ const cursosDelete = async (req, res) => {
     }
 };
 
+const cursosGetMaestro = async (req, res) => {
+    try{
+        const maestroID = req.maestro._id;
+        const cursos = await Curso.find({maestro: maestroID});
+
+        res.status(200).json({
+            total: cursos.lenght,
+            cursos
+        });
+
+    }catch(e){
+        res.status(500).json({
+            msg: 'Hubo un ERROR al poder Obtener los Cursos del Maestro',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     cursosGet,
     cursosPost,
     cursosPut,
-    cursosDelete
+    cursosDelete,
+    cursosGetMaestro
 }
