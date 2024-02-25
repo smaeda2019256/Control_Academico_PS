@@ -79,6 +79,14 @@ const validarExistenciaDeCursos = async (cursos) => {
     }
 }
 
+const validarExistenciaMaestro = async (correo) => {
+    const existeMaestro = await Maestro.findOne({ correo });
+
+    if (!existeMaestro) {
+        throw new Error(`No se pudo encontrar al Maestro con el Correo: ${correo}`);
+    }
+}
+
 
 module.exports = {
     existenteEmailAlumno,
@@ -90,5 +98,6 @@ module.exports = {
     existeCursoByCorreo,
     validarCursosRepetidos,
     validarLimiteCursos,
-    validarExistenciaDeCursos
+    validarExistenciaDeCursos,
+    validarExistenciaMaestro
 }
