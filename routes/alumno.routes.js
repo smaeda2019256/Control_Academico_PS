@@ -16,12 +16,13 @@ const { validarJWT } = require('../middlewares/validar-jwt.js');
 const router = Router();
 
 router.get(
-    "/:id",
+    "/cursos",
     [
+        validarJWT,
         check('id', 'No es un ID válido').isMongoId(),
-        check('id').custom(existenteId),
+        check('id').custom(existeAlumnoById),
         validarCampos
-    ], getAlumnoByid
+    ], getCursoAlumnoByToken
 );
 
 router.post(
@@ -52,9 +53,12 @@ router.delete(
     [
         
         check('id', 'No es un ID válido').isMongoId(),
-        check('id').custom(existenteId),
-        validarCampos
+        check('id').custom(existeAlumnoById),
+        validarCampos,
+        validarJWT,
+        valdarAccionesDeAlumno,
     ], alumnosDelete
 );
+
 
 module.exports = router;
