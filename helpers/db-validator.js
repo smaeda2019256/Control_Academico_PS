@@ -42,9 +42,24 @@ const existeCursos = async (nombre = '') => {
 }
 
 const existeCursoById = async ( id = '') => {
-    const existeUsuario = await Curso.findOne({id});
-    if(!existeUsuario){
+    const existeCurso = await Curso.findOne({id});
+    if(!existeCurso){
         throw new Error(`El Curso con el ${ id } NO EXISTE`);
+    }
+}
+
+const existeCursoByCorreo = async ( correo = '') => {
+    const existeUsuario = await Curso.findOne({correo});
+    if(!existeUsuario){
+        throw new Error(`El Curso con el ${ correo } NO EXISTE`);
+    }
+}
+
+const validarCursosRepetidos = (cursos) => {
+    const set = new Set(cursos);
+    if (set.size !== cursos.length) {
+        const cursosRepetidos = [...set].filter(curso => cursos.indexOf(curso) !== cursos.lastIndexOf(curso));
+        throw new Error(`ERROR - El Curso no se puede AGREGAR Varias Veces ${cursosRepetidos}`);
     }
 }
 
@@ -55,5 +70,7 @@ module.exports = {
     existeEmailMaestro,
     existeMaestroById,
     existeCursos,
-    existeCursoById
+    existeCursoById,
+    existeCursoByCorreo,
+    validarCursosRepetidos
 }
