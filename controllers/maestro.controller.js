@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Maestro = require('../models/maestro');
 const { response, request } = require('express');
+const { existeEmailMaestro } = require('../helpers/db-validator');
 
 const maestrosGet = async (req, res = response) =>{
     const {limite, desde } = req.query;
@@ -32,6 +33,7 @@ const getMaestroById = async (req, res) => {
 const maestrosPost = async (req, res) => {
     try{
         const { nombre, correo, password } = req.body;
+        await existeEmailMaestro(correo);
         const hashedPassword = await bcrypt.hash(password, 10);
         const maestro = new Maestro({nombre, correo, password: hashedPassword});
 

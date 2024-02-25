@@ -9,6 +9,7 @@ class Server {
         this.alumnoPath = '/api/alumnos'
         this.maestroPath = '/api/maestros'
         this.loginPath = '/api/auth'
+        this.cursosPath = '/api/cursos'
         this.conectarDB();
         this.middlewares();
         this.routes();
@@ -28,6 +29,7 @@ class Server {
         this.app.use(this.alumnoPath, require('../routes/alumno.routes'));
         this.app.use(this.maestroPath, require('../routes/maestro.routes'));
         this.app.use(this.loginPath, require('../routes/auth.routes'));
+        this.app.use(this.cursosPath, require('../routes/'));
     }
 
     listen() {

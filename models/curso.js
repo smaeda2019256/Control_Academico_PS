@@ -15,8 +15,8 @@ const CursoSchema = Schema ({
     },
     profesor: {
         type: Schema.Types.ObjectId,
-        ref: 'Profesor',
-        required: [true, 'El profesor es obligatorio']
+        ref: 'Maestro',
+        required: [true, 'El Maestro es obligatorio']
     },
     estado: {
         type: String,
