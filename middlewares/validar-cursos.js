@@ -45,7 +45,7 @@ const validarCursos = async (req, res, next) => {
         req.alumno = alumno;
 
         next();
-    }catch(e){
+    }catch(error){
         res.status(500).json({
             msg: "ERROR al poder Validar el Curso",
             error: error.message
