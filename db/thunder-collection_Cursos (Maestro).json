@@ -1,0 +1,109 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Cursos (Maestro)",
+    "dateExported": "2024-02-26T00:34:43.456Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "05138174-8dd8-4a7b-a093-525b959c5837",
+            "colId": "fa70b4a0-f0c3-453f-bfe2-3fcdf41045cb",
+            "containerId": "",
+            "name": "POST Cursos",
+            "url": "http://localhost:3000/api/cursos",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-25T22:43:33.947Z",
+            "modified": "2024-02-26T00:27:09.195Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZDBlYWZjZmQxOGU5YjlkNTQwNTMiLCJpYXQiOjE3MDg5MDcxOTYsImV4cCI6MTcwODkxMDc5Nn0.hRxrvPywBLZb_xMXNlVvyoMhivvdOw1unfO1dSdF2iE"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Ingles\",\n  \"descripcion\": \"Materia relacionada a el lenguaje en ingles\",\n  \"acceso\": \"IN\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "86cc8755-6b8f-436e-ae32-f0c93a52d737",
+            "colId": "fa70b4a0-f0c3-453f-bfe2-3fcdf41045cb",
+            "containerId": "",
+            "name": "GET Cursos",
+            "url": "http://localhost:3000/api/cursos",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-25T22:45:05.910Z",
+            "modified": "2024-02-25T22:45:20.913Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6ab1ab26-79c0-4289-bea1-6256d778f429",
+            "colId": "fa70b4a0-f0c3-453f-bfe2-3fcdf41045cb",
+            "containerId": "",
+            "name": "GET Cursos Maestro Token",
+            "url": "http://localhost:3000/api/cursos/maestro",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-25T22:45:54.717Z",
+            "modified": "2024-02-26T00:21:25.654Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZDBlYWZjZmQxOGU5YjlkNTQwNTMiLCJpYXQiOjE3MDg5MDY3MTYsImV4cCI6MTcwODkxMDMxNn0.4eyUXqWrmHhRRwl_lTgwT6xxbmZ9owWafw-wmlluEgw"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "586a2186-6765-42ed-adbf-6c07b6fd5638",
+            "colId": "fa70b4a0-f0c3-453f-bfe2-3fcdf41045cb",
+            "containerId": "",
+            "name": "PUT Cursos",
+            "url": "http://localhost:3000/api/cursos/65dbdadd8f1f67f8a3047eb5",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-02-25T22:46:39.223Z",
+            "modified": "2024-02-26T00:31:14.592Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZDBlYWZjZmQxOGU5YjlkNTQwNTMiLCJpYXQiOjE3MDg5MDczNDEsImV4cCI6MTcwODkxMDk0MX0.1EdAJ-P08JGdBgIfAfi8lxVnrKxWg1Kd28yUicnlCMA"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Ingles III\",\n  \"descripcion\": \"Materia relacionada a el ingles mas avanzado\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dff2aca8-49db-412e-a4b5-e136e03180ae",
+            "colId": "fa70b4a0-f0c3-453f-bfe2-3fcdf41045cb",
+            "containerId": "",
+            "name": "DELETE Curso",
+            "url": "http://localhost:3000/api/cursos/65dbdadd8f1f67f8a3047eb5",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-02-25T22:47:49.348Z",
+            "modified": "2024-02-26T00:32:00.950Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZDBlYWZjZmQxOGU5YjlkNTQwNTMiLCJpYXQiOjE3MDg5MDY3MTYsImV4cCI6MTcwODkxMDMxNn0.4eyUXqWrmHhRRwl_lTgwT6xxbmZ9owWafw-wmlluEgw"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

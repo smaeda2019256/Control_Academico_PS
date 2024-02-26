@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Maestros",
+    "dateExported": "2024-02-26T00:34:38.192Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "da8a5eec-b02a-4da2-9f4f-73576a7adcf5",
+            "colId": "5ec2a1cd-8d88-4fe5-a002-764cfbd30e0f",
+            "containerId": "",
+            "name": "POST Maestros",
+            "url": "http://localhost:3000/api/maestros",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-25T22:13:33.538Z",
+            "modified": "2024-02-25T23:44:42.257Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Manuel Garcia\",\n  \"correo\": \"mgarcia@Kinal.org.gt\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

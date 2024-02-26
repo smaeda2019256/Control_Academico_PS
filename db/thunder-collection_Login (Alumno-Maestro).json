@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Login (Alumno-Maestro)",
+    "dateExported": "2024-02-26T00:34:18.902Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "261b978e-de38-4dea-91a8-1d871c63871c",
+            "colId": "895eb57e-239c-45d9-81e4-ac282d20519a",
+            "containerId": "",
+            "name": "POST Login",
+            "url": "http://localhost:3000/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-25T21:03:29.507Z",
+            "modified": "2024-02-26T00:30:26.883Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"correo\": \"smaeda@Kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

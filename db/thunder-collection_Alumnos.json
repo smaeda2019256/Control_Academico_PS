@@ -1,0 +1,114 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Alumnos",
+    "dateExported": "2024-02-26T00:34:32.712Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "ae49810a-db6a-4b47-88ab-f3aab65ecc32",
+            "colId": "bd82908b-6f84-4952-bcf4-d67960386615",
+            "containerId": "",
+            "name": "POST Alumnos",
+            "url": "http://localhost:3000/api/alumnos",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-25T22:04:32.536Z",
+            "modified": "2024-02-26T00:24:03.305Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Alumno New\",\n  \"correo\": \"alumno@Kinal.edu.gt\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dd26fba8-54c2-4f04-8ffd-3b23c6cb7e35",
+            "colId": "bd82908b-6f84-4952-bcf4-d67960386615",
+            "containerId": "",
+            "name": "PUT Alumnos",
+            "url": "http://localhost:3000/api/alumnos/65dbc5389e2c1d8207e86269",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-02-25T22:06:48.442Z",
+            "modified": "2024-02-25T22:56:21.873Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiYzUzODllMmMxZDgyMDdlODYyNjkiLCJpYXQiOjE3MDg5MDE3MTEsImV4cCI6MTcwODkwNTMxMX0.7ZLbA608tsP97rUaEFPjY1f-w8-se-P2ocdMsxQzSpk"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Santiago Estrada\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fce8979f-74cb-408b-8eae-7bf9c8748143",
+            "colId": "bd82908b-6f84-4952-bcf4-d67960386615",
+            "containerId": "",
+            "name": "DELETE Alumnos",
+            "url": "http://localhost:3000/api/alumnos/65dbc6d92585dfc39bd180a7",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-02-25T22:08:11.051Z",
+            "modified": "2024-02-25T23:03:39.831Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiYzZkOTI1ODVkZmMzOWJkMTgwYTciLCJpYXQiOjE3MDg5MDIxOTQsImV4cCI6MTcwODkwNTc5NH0.2HdP1oCUR13bd2hDhLSS1Pf9RSkwt_GN-jYv1IOLaIE"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "63702ae0-5554-414a-9c8f-cf17a1dcab9a",
+            "colId": "bd82908b-6f84-4952-bcf4-d67960386615",
+            "containerId": "",
+            "name": "POST Curso-Alumno",
+            "url": "http://localhost:3000/api/alumnos/cursos",
+            "method": "POST",
+            "sortNum": 35000,
+            "created": "2024-02-25T22:10:20.767Z",
+            "modified": "2024-02-26T00:31:02.127Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiYzUzODllMmMxZDgyMDdlODYyNjkiLCJpYXQiOjE3MDg5MDc0MjYsImV4cCI6MTcwODkxMTAyNn0.qFkZEGSr-gfH9saXVigeq9z8r6S0_zbrNM0lVdjsd3g"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombreMateria\": \"Ingles II\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e6a2a49b-cefd-479d-9020-d077359c07bc",
+            "colId": "bd82908b-6f84-4952-bcf4-d67960386615",
+            "containerId": "",
+            "name": "GET Cursos-Alumno",
+            "url": "http://localhost:3000/api/alumnos/cursos",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-25T22:09:12.998Z",
+            "modified": "2024-02-26T00:30:37.796Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiYzUzODllMmMxZDgyMDdlODYyNjkiLCJpYXQiOjE3MDg5MDc0MjYsImV4cCI6MTcwODkxMTAyNn0.qFkZEGSr-gfH9saXVigeq9z8r6S0_zbrNM0lVdjsd3g"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
