@@ -1,2 +1,2 @@
 # Control_Academico_PS
-Repositorio de Control Académico - Primera Parte
+Repositorio de PMA Control Académico
