@@ -1,6 +1,6 @@
 const Curso = require('../models/curso');
 const jwt = require('jsonwebtoken');
-const Alumno = require('../models/alumnos');
+const Alumno = require('../models/alumno');
 
 const validarCursos = async (req, res, next) => {
     try{
@@ -37,7 +37,7 @@ const validarCursos = async (req, res, next) => {
 
         if (alumno.cursos.length >= 3) {
             return res.status(400).json({
-                error: 'ERROR - El Alumno ya está inscrito en el límite de Cursos',
+                error: 'ERROR - El Alumno ya no puede inscribirse a más Cursos por el límite (3 Cursos)',
             });
         }
 

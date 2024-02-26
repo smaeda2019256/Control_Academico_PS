@@ -6,7 +6,7 @@ const Maestro = require('../models/maestro');
 const existenteEmailAlumno = async (correo = '') => {
     const existeEmail = await Alumno.findOne({correo});
     if(existeEmail){
-        throw new Error(`El EMAIL ${correo} ya fue registrado`);
+        throw new Error(`El EMAIL ${correo} ya fue registrado. Porfavor crea uno Nuevo`);
     }
 }
 
@@ -20,7 +20,7 @@ const existeAlumnoById = async (id = '') => {
 const existeEmailMaestro = async (correo='') => {
     const existeEmail = await Maestro.findOne({correo});
     if(existeEmail){
-        throw new Error (`El EMAIL ${correo} ya fue registrado`);
+        throw new Error (`El EMAIL ${correo} ya fue registrado. Porfavor crea uno Nuevo`);
     }
 }
 

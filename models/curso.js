@@ -13,7 +13,7 @@ const CursoSchema = Schema ({
         type: String,
         required: [true, 'El código de acceso es obligatorio']
     },
-    profesor: {
+    maestro: {
         type: Schema.Types.ObjectId,
         ref: 'Maestro',
         required: [true, 'El Maestro es obligatorio']

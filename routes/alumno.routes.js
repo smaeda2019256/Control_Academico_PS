@@ -12,6 +12,7 @@ const {
 
 } = require('../controllers/alumno.controller.js');
 const { validarJWT } = require('../middlewares/validar-jwt.js');
+const { validarCursos } = require('../middlewares/validar-cursos.js');
 
 const router = Router();
 
@@ -58,6 +59,16 @@ router.delete(
         validarJWT,
         valdarAccionesDeAlumno,
     ], alumnosDelete
+);
+
+router.post(
+    "/cursos",
+    [
+        validarJWT,
+        check("nombreMateria", "El nombre de la Materia es obligatorio").not().isEmpty(),
+        validarCampos,
+        validarCursos,
+    ], agregarCursoAlumno
 );
 
 

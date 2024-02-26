@@ -12,10 +12,10 @@ const login = async (req, res) => {
 
     if (alumno) {
         user = alumno;
-        userType = 'Alumno'
+        userType = 'alumno'
     } else {
         user = maestro;
-        userType = 'Maestro';
+        userType = 'maestro';
     }
     
     try {
@@ -40,7 +40,7 @@ const login = async (req, res) => {
         const token = await generarJWT(user.id);
 
         res.status(200).json({
-            msg: 'TOTAL ACCESO :)',
+            msg: 'LOGIN CORRECTO - TOTAL ACCESO :)',
             user,
             token
         })

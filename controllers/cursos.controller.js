@@ -1,7 +1,7 @@
 const {response, json} = require('express');
 const Curso = require('../models/curso');
 const Alumno = require('../models/alumno');
-const Profesor = require('../models/maestro');
+const Maestro = require('../models/maestro');
 
 const cursosGet = async (req, res = response) =>{
     const {limite, desde} = req.query;
@@ -10,7 +10,7 @@ const cursosGet = async (req, res = response) =>{
 
         Curso.countDocuments(query),
         Curso.find(query)
-            .populate('Maestro', 'Nombre de Correo')
+            .populate('maestro', 'nombre de correo')
             .skip (Number(desde))
             .limit(Number(limite))
     ]);
@@ -33,7 +33,7 @@ const cursosPost = async (req, res) => {
             curso
         });
 
-    }catch(e){
+    }catch(error){
         res.status(409).json({
             error: error.message
         });
@@ -65,7 +65,7 @@ const cursosPut =  async (req, res) => {
             curso: cursoActualizado
         });
 
-    }catch(e){
+    }catch(error){
         res.status(500).json({
             msg: 'Hubo un ERROR al poder ACTUALIZAR el Curso',
             error: error.message
@@ -96,7 +96,7 @@ const cursosDelete = async (req, res) => {
             msg: 'El Curso fue ELIMINADO Correctamente'
         });
 
-    }catch(e){
+    }catch(error){
         res.status(500).json({
             msg: 'Hubo un ERROR al quere ELIMINAR el Curso',
             error: error.message
@@ -114,7 +114,7 @@ const cursosGetMaestro = async (req, res) => {
             cursos
         });
 
-    }catch(e){
+    }catch(error){
         res.status(500).json({
             msg: 'Hubo un ERROR al poder Obtener los Cursos del Maestro',
             error: error.message
