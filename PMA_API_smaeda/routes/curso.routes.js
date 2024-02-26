@@ -3,11 +3,11 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { existeCursoById } = require('../helpers/db-validator');
-const { 
-    cursosDelete, 
-    cursosGet, 
-    cursosPost, 
-    cursosPut, 
+const {
+    cursosDelete,
+    cursosGet,
+    cursosPost,
+    cursosPut,
     cursosGetMaestro } = require('../controllers/cursos.controller');
 
 const validarMaestro = require('../middlewares/validar-maestros');
@@ -47,12 +47,12 @@ router.post(
     ], cursosPost);
 
 
-    router.post(
-        "/maestro",
-        [
-            validarJWT,
-            check("correo", "El Correo del Maestro es obligatorio").isEmail(),
-            validarCampos
-        ], cursosGetMaestro);
+router.post(
+    "/maestro",
+    [
+        validarJWT,
+        check("correo", "El Correo del Maestro es obligatorio").isEmail(),
+        validarCampos
+    ], cursosGetMaestro);
 
 module.exports = router;
