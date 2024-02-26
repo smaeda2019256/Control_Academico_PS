@@ -58,6 +58,7 @@ router.delete(
         validarCampos,
         validarJWT,
         valdarAccionesDeAlumno,
+        
     ], alumnosDelete
 );
 
